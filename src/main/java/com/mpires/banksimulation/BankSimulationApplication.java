@@ -8,8 +8,6 @@ public class BankSimulationApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BankSimulationApplication.class, args);
-
-        System.out.println("Hello from bank Simulation.");
     }
 
 }
