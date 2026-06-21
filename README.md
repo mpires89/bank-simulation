@@ -20,11 +20,10 @@ Com a aplicação rodando localmente, basta acessar o link no navegador:
 
 ## Versionamento de Rotas
 
-Todos os endpoints da API estão versionados sob o prefixo `/api/v1`.
 Exemplos de chamadas disponíveis:
-- `POST /api/v1/reset`
-- `GET /api/v1/balance?account_id={id}`
-- `POST /api/v1/event`
+- `POST /reset`
+- `GET /balance?account_id={id}`
+- `POST /event`
 
 ## Como executar o projeto localmente
 
