@@ -25,6 +25,9 @@ public class AccountService {
 
     @Transactional
     public EventResponse processEvent(EventRequest request) {
+        if (request.getAmount() <= 0 ){
+            return null;
+        }
         switch (request.getType()) {
             case DEPOSIT:
                 Account dest = repository.findById(request.getDestination())
@@ -35,7 +38,7 @@ public class AccountService {
 
             case WITHDRAW:
                 Account originW = repository.findById(request.getOrigin()).orElse(null);
-                if (originW == null) {
+                if (originW == null || (originW.getBalance() < request.getAmount())) {
                     return null;
                 }
                 originW.setBalance(originW.getBalance() - request.getAmount());
@@ -44,7 +47,7 @@ public class AccountService {
 
             case TRANSFER:
                 Account originT = repository.findById(request.getOrigin()).orElse(null);
-                if (originT == null) {
+                if (originT == null || (originT.getBalance() < request.getAmount()))  {
                     return null;
                 }
                 Account destT = repository.findById(request.getDestination())
